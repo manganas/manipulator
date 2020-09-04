@@ -325,6 +325,44 @@ def Geometric3dofArticulated(xRef, yRef, zRef):
     return [theta1, theta2, theta3]
 
 
+def my_functions(thetas):
+    theta = np.array(thetas).reshape(len(thetas), 1)
+    theta1 = theta[0, 0]
+    theta2 = theta[1, 0]
+    return np.array([[5*theta1**2 - np.sin(theta2)], [np.cos(theta1)-theta2**-1]])
+
+
+def my_jacobian(thetas):
+    theta = np.array(thetas).reshape(len(thetas), 1)
+    theta1 = theta[0, 0]
+    theta2 = theta[1, 0]
+    return np.array([[10*theta1 - np.cos(theta2)], [-np.sin(theta1) + theta2**-2]])
+
+
+def NRRootsScalar(function, Jacobian, xd, theta0, tol):
+    i = 0
+    theta_init = theta0
+    e = xd - function(theta_init)
+    while np.abs(e) > tol:
+        theta_init += (Jacobian(theta_init))**-1 * (e)
+        e = xd - function(theta_init)
+        i += 1
+    return [theta_init, i]
+
+
+def NRRootsVector(functions, Jacobian, xd_array, theta0_array, tol):
+    i = 0
+    theta_init = np.array(theta0_array).reshape(len(theta0_array), 1)
+    xd = np.array(xd_array).reshape(len(xd_array), 1)
+    e = xd - theta_init
+    while twoNorm(e) > tol:
+        Jpinv = np.linalg.pinv(Jacobian(theta_init))
+        theta_init += np.dot(Jpinv, e)
+        e = xd - functions(theta_init)
+        i += 1
+    return [theta_init, i]
+
+
 ### Tests ###
 Lx = 0.30
 Lz = 0.65
