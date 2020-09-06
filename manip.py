@@ -296,13 +296,13 @@ def Geometric3dofArticulated(xRef, yRef, zRef):
     d1 = 0.4
 
     # define limits for each axis
-    theta1Max = 350*np.pi/180.0
+    theta1Max = 360*np.pi/180.0
     theta1Min = 0
 
-    theta2Max = 200*np.pi/180.0
+    theta2Max = 360*np.pi/180.0
     theta2Min = 0
 
-    theta3Max = 150*np.pi/180.0
+    theta3Max = 360*np.pi/180.0
     theta3Min = 0
 
     theta1 = np.arctan2(yRef, xRef)
