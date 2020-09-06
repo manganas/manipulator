@@ -289,6 +289,13 @@ def FixAngle(in_angle):
     return out_angle
 
 
+def FixAngles(angles_array):
+    out = np.zeros((1, len(angles_array)))
+    for i in range(len(angles_array)):
+        out[0, i] = FixAngle(angles_array[i])
+    return out
+
+
 def Geometric3dofArticulated(xRef, yRef, zRef):
     # define fixed geometric lengths
     l1 = 0.4
