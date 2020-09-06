@@ -329,14 +329,14 @@ def my_functions(thetas):
     theta = np.array(thetas).reshape(len(thetas), 1)
     theta1 = theta[0, 0]
     theta2 = theta[1, 0]
-    return np.array([[5*theta1**2 - np.sin(theta2)], [np.cos(theta1)-theta2**-1]])
+    return np.array([[5*theta1**2], [theta2**2]])
 
 
 def my_jacobian(thetas):
     theta = np.array(thetas).reshape(len(thetas), 1)
     theta1 = theta[0, 0]
     theta2 = theta[1, 0]
-    return np.array([[10*theta1 - np.cos(theta2)], [-np.sin(theta1) + theta2**-2]])
+    return np.array([[10*theta1, 0], [0, 2*theta2]])
 
 
 def NRRootsScalar(function, Jacobian, xd, theta0, tol):
