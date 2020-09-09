@@ -1,6 +1,14 @@
 import numpy as np
 
 
+def deg2rad(deg):
+    return deg*np.pi/180.0
+
+
+def rad2deg(rad):
+    return rad*180.0/np.pi
+
+
 def RotX(theta):
     return np.array([[1, 0, 0], [0, np.cos(theta), -np.sin(theta)], [0, np.sin(theta), np.cos(theta)]])
 
