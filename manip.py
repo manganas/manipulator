@@ -290,9 +290,7 @@ def FixAngle(in_angle):
     out_angle = in_angle
     while out_angle > 2*np.pi:
         out_angle -= 2*np.pi
-    while out_angle < -2*np.pi:
-        out_angle += 2*np.pi
-    if out_angle < 0:
+    while out_angle < 0:
         out_angle += 2*np.pi
     return out_angle
 
