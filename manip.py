@@ -376,35 +376,3 @@ def NRRootsVector(functions, Jacobian, xd_array, theta0_array, tol):
         e = xd - functions(theta_init)
         i += 1
     return [theta_init, i]
-
-
-### Tests ###
-Lx = 0.30
-Lz = 0.65
-Lh = 0.20
-
-w1 = np.array([0, 0, 1])
-p1 = np.array([0, 0, 0])
-
-w2 = np.array([1, 0, 0])
-p2 = np.array([0, 0, 0])
-
-w3 = np.array([0, 0, 1])
-p3 = np.array([Lx, 0, Lz])
-
-
-theta1 = 0*np.pi/180.0
-theta2 = 0*np.pi/180.0
-theta3 = 0*np.pi/180.0
-
-
-w = [w1, w2, w3]
-p = [p1, p2, p3]
-theta = [theta1, theta2, theta3]
-
-M0 = np.array([[1, 0, 0, Lx+Lh], [0, 1, 0, 0], [0, 0, 1, Lz], [0, 0, 0, 1]])
-
-S = ScrewAxesSpace(w, p)
-Tsb = ForwardKinematicsSpace_(S, theta, M0)
-Js = JacobianSpace(S, theta)
-JacobianBody(Tsb, Js)
